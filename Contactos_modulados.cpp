@@ -74,3 +74,56 @@ void modificarContacto() {
         cout << "Indice invalido.\n";
     }
 }
+
+void eliminarContacto() {
+    if (numContactos == 0) {
+        cout << "No hay contactos para eliminar.\n";
+        return;
+    }
+
+    mostrarContactos();
+    int idx;
+    cout << "Seleccione el numero del contacto a eliminar: ";
+    cin >> idx;
+
+    if (idx >= 1 && idx <= numContactos) {
+        for (int i = idx - 1; i < numContactos - 1; i++) {
+            contactos[i] = contactos[i + 1];
+        }
+        numContactos--;
+        cout << "Contacto eliminado correctamente.\n";
+    } else {
+        cout << "Indice invalido.\n";
+    }
+}
+//menu
+void mostrarMenu() {
+    cout << "\n=== GESTION DE CONTACTOS MODULARIZADO ===\n";
+    cout << "1. Agregar contacto\n";
+    cout << "2. Mostrar contactos\n";
+    cout << "3. Modificar contacto\n";
+    cout << "4. Eliminar contacto\n";
+    cout << "5. Salir\n";
+    cout << "Seleccione una opcion: ";
+}
+
+int main() {
+    int opcion;
+
+    do {
+        mostrarMenu();
+        cin >> opcion;
+
+        switch (opcion) {
+            case 1: agregarContacto(); break;
+            case 2: mostrarContactos(); break;
+            case 3: modificarContacto(); break;
+            case 4: eliminarContacto(); break;
+            case 5: cout << "Saliendo...\n"; break;
+            default: cout << "Opcion invalida.\n"; break;
+        }
+
+    } while (opcion != 5);
+
+    return 0;
+}
