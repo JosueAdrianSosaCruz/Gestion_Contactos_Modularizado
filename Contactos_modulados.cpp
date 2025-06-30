@@ -14,7 +14,7 @@ int numContactos = 0;
 //funciones modulares
 void agregarContacto() {
     if (numContactos >= maxi_contactos) {
-        cout << "No se pueden agregar más contactos.\n";
+        cout << "No se pueden agregar mas contactos.\n";
         return;
     }
 
@@ -44,5 +44,33 @@ void mostrarContactos() {
              << contactos[i].nombre << " | "
              << contactos[i].correo << " | "
              << contactos[i].telefono << endl;
+    }
+}
+
+void modificarContacto() {
+    if (numContactos == 0) {
+        cout << "No hay contactos para modificar.\n";
+        return;
+    }
+
+    mostrarContactos();
+    int idx;
+    cout << "Seleccione el numero del contacto a modificar: ";
+    cin >> idx;
+
+    if (idx >= 1 && idx <= numContactos) {
+        cin.ignore();
+        cout << "Nuevo nombre: ";
+        getline(cin, contactos[idx - 1].nombre);
+
+        cout << "Nuevo correo: ";
+        getline(cin, contactos[idx - 1].correo);
+
+        cout << "Nuevo telefono: ";
+        getline(cin, contactos[idx - 1].telefono);
+
+        cout << "Contacto modificado correctamente.\n";
+    } else {
+        cout << "Indice invalido.\n";
     }
 }
